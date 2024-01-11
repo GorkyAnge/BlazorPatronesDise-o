@@ -1,0 +1,7 @@
+D:\Users\Liseth\Documents\UDLA\QUINTO SEMESTRE\MODELADO\Patrones\FactoryC#\FactoryC#\obj\Debug\FactoryC#.csproj.AssemblyReference.cache
+D:\Users\Liseth\Documents\UDLA\QUINTO SEMESTRE\MODELADO\Patrones\FactoryC#\FactoryC#\obj\Debug\FactoryC#.csproj.CoreCompileInputs.cache
+D:\Users\Liseth\Documents\UDLA\QUINTO SEMESTRE\MODELADO\Patrones\FactoryC#\FactoryC#\bin\Debug\FactoryC#.exe.config
+D:\Users\Liseth\Documents\UDLA\QUINTO SEMESTRE\MODELADO\Patrones\FactoryC#\FactoryC#\bin\Debug\FactoryC#.exe
+D:\Users\Liseth\Documents\UDLA\QUINTO SEMESTRE\MODELADO\Patrones\FactoryC#\FactoryC#\bin\Debug\FactoryC#.pdb
+D:\Users\Liseth\Documents\UDLA\QUINTO SEMESTRE\MODELADO\Patrones\FactoryC#\FactoryC#\obj\Debug\FactoryC#.exe
+D:\Users\Liseth\Documents\UDLA\QUINTO SEMESTRE\MODELADO\Patrones\FactoryC#\FactoryC#\obj\Debug\FactoryC#.pdb
