@@ -1,0 +1,58 @@
+﻿@page "/chatroom"
+@using BlazorObserver.Models;
+@using BlazorObserver.Observers;
+@inject BlazorObserver.Observers.ChatRoom MyChatRoom  
+
+<h3>Chat Room</h3>
+
+
+
+
+<div>
+    <label for="messageInput">Nuevo Mensaje:</label>
+    <input type="text" id="messageInput" @bind="newMessageText" />
+    <button @onclick="SendMessage">Enviar Mensaje</button>
+</div>
+
+<div>
+    <h4>Usuarios:</h4>
+    @foreach (var user in users)
+    {
+        <p>@user.Name</p>
+    }
+</div>
+
+<div>
+    <h4>Mensajes:</h4>
+    @foreach (var message in messages)
+    {
+        <p>@message.Text</p>
+    }
+</div>
+
+@code {
+    private string newMessageText;
+    private List<User> users = new List<User>();
+    private List<Message> messages = new List<Message>();
+
+    protected override void OnInitialized()
+    {
+        var user1 = new User("Usuario1");
+        var user2 = new User("Usuario2");
+
+        users.Add(user1);
+        users.Add(user2);
+
+        MyChatRoom.Attach(user1);
+        MyChatRoom.Attach(user2);
+    }
+
+    private void SendMessage()
+    {
+        var newMessage = new Message(newMessageText);
+        MyChatRoom.SendMessage(newMessage);
+        messages.Add(newMessage);
+
+        newMessageText = string.Empty;
+    }
+}

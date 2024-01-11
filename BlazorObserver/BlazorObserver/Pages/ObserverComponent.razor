@@ -1,0 +1,62 @@
+﻿@page "/observercomponent"
+
+<style>
+    .observer-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+        .observer-container div {
+            text-align: center;
+        }
+
+        .observer-container img {
+            max-width: 100px; /* Establece el ancho máximo de la imagen */
+            max-height: 100px; /* Establece la altura máxima de la imagen */
+        }
+</style>
+
+<h3>Observer Pattern Implementation</h3>
+
+<button @onclick="RunBusinessLogic">Run Business Logic</button>
+
+<p>State: @subject.State</p>
+
+<div class="observer-container">
+    <div>
+        <h4>Concrete Observer A</h4>
+        <p>Reacted to event: @observerA.ReactedToEvent</p>
+        <p>Reacting to numbers: 0, 1, 2</p>
+        <img src="https://www.pngall.com/wp-content/uploads/12/Shakira-PNG-HD-Image.png" alt="Observer A Image" />
+    </div>
+
+    <div>
+        <h4>Concrete Observer B</h4>
+        <p>Reacted to event: @observerB.ReactedToEvent</p>
+        <p>Reacting to numbers: 0, 3, 4, ...</p>
+        <img src="https://media.vanityfair.com/photos/6197d3cf5304bc62131a6771/master/w_2560%2Cc_limit/taylor-swift-unapologetic-messiness-lede.png" alt="Observer B Image" />
+    </div>
+</div>
+
+@code {
+    private Models.Subject subject;
+    private Observers.ConcreteObserverA observerA;
+    private Observers.ConcreteObserverB observerB;
+
+    private void RunBusinessLogic()
+    {
+        subject.SomeBusinessLogic();
+        subject.Notify();
+        StateHasChanged();
+    }
+
+    protected override void OnInitialized()
+    {
+        subject = new Models.Subject();
+        observerA = new Observers.ConcreteObserverA();
+        observerB = new Observers.ConcreteObserverB();
+        subject.Attach(observerA);
+        subject.Attach(observerB);
+    }
+}
