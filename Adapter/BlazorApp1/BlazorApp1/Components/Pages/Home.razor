@@ -1,0 +1,93 @@
+﻿@page "/"
+@using BlazorApp1.Clases
+@using BlazorApp1.Interfaces
+@rendermode InteractiveServer
+
+<style>
+    .centrado {
+        text-align: center;
+    }
+
+    .espaciado {
+        margin-top: 20px;
+    }
+
+    .resultado {
+        color: #e44d26; /* Color naranja oscuro */
+        font-weight: bold;
+    }
+
+    .titulo {
+        color: #007bff; /* Color azul */
+    }
+
+    .descripcion {
+        color: #333; /* Color gris oscuro */
+    }
+
+    .mensaje-label {
+        color: #28a745; /* Color verde */
+    }
+
+    .mensaje-input {
+        border: 1px solid #28a745; /* Borde verde */
+    }
+
+ 
+</style>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="centrado">
+                <h3 class="titulo">Imprimir mediante un adaptador</h3>
+            </div>
+            <p class="descripcion">
+                Se basa en que un cliente desea realizar una impresión de un documento en un formato antiguo de una impresora antigua en una impresora nueva
+            </p>
+            <p class="descripcion">
+                El patrón Adapter se utiliza aquí para permitir que una clase que implementa una interfaz antigua sea utilizada por un cliente que espera una interfaz nueva.
+                El adaptador actúa como un puente entre la antigua y la nueva interfaz, permitiendo que objetos incompatibles trabajen juntos. En este caso, el cliente utiliza la interfaz INuevaImpresora para imprimir, pero internamente se adapta a la antigua interfaz mediante el uso del adaptador.
+            </p>
+
+            <div class="form-group espaciado">
+                <label for="mensaje" >Mensaje de Impresora Antigua:</label>
+                <input id="mensaje" class="form-control " @bind="mensaje" />
+            </div>
+
+            <button class="btn btn-primary" @onclick="Imprimir">Imprimir</button>
+
+            <p class="espaciado resultado">Resultado de Impresión:</p>
+            <hr />
+            <p class="mensaje-label">@avance</p>
+            <p >@resultadoImpresion</p>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string resultadoImpresion;
+    private string mensaje;
+    private string avance;
+
+    private async Task Imprimir()
+    {
+        Cliente cliente = new Cliente();
+        resultadoImpresion = "";
+        IAntiguaImpresora antiguaImpresora = new AntiguaImpresora();
+        antiguaImpresora.setearMensaje(mensaje);
+        avance = "Se seteó el texto   " + mensaje + "  en la impresora antigua";
+        StateHasChanged(); // Actualiza la interfaz de usuario
+        await Task.Delay(3000);
+
+        INuevaImpresora nuevaImpresora = new Adaptador(antiguaImpresora);
+        avance = "Se adapta el mensaje a la interfaz de la nueva impresora";
+        StateHasChanged();
+        await Task.Delay(3000);
+        avance = "Impresión desde la impresora nueva realizada.";
+        StateHasChanged();
+        await Task.Delay(2000);
+        resultadoImpresion = cliente.RealizarImpresion(nuevaImpresora);
+        StateHasChanged();
+    }
+}
