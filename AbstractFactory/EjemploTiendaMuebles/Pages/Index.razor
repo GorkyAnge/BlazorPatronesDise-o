@@ -1,0 +1,38 @@
+﻿@page "/"
+
+@using EjemploTiendaMuebles.Interfaces
+@using EjemploTiendaMuebles.TiposFabricas
+@* @inject EjemploTiendaMuebles.Service.APIService APIService
+ *@
+<h3>Simulador de Tienda de Muebles</h3>
+
+<button @onclick="MostrarInformacion">Mostrar Información</button>
+
+<p>@informacion</p>
+
+@code {
+    private string informacion = "";
+
+    private void MostrarInformacion()
+    {
+        // ConfiguradorTiendaMuebles
+        ConfiguradorTiendaMuebles configurador = new ConfiguradorTiendaMuebles();
+        configurador.Inicializar();
+        informacion += "Información de ConfiguradorTiendaMuebles:\n";
+        // Puedes agregar más lógica aquí si hay información específica que deseas mostrar
+
+        // if (configurador.LeerTipoMueblesDesdeConfig() == "Moderno")
+        // {
+        //     APIService.GetImg("Moderno");
+        // }
+        // else if (configurador.LeerTipoMueblesDesdeConfig() == "Victoriano")
+        // {
+        //     APIService.GetImg("Victoriano");
+        // }
+        // else (configurador.LeerTipoMueblesDesdeConfig() == "Victoriano")
+        // {
+        //     APIService.GetImg("Victoriano");
+        // }
+
+    }
+}
